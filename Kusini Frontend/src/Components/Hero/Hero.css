@@ -1,0 +1,43 @@
+.hero {
+  height: 100vh;
+  background: black;
+  display: flex;
+}
+
+.hero_right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding-left: 180px;
+  line-height: 1.1;
+  text-align: center;
+}
+.hero_right hr {
+  width: 100px;
+  height: 4px;
+  border-radius: 10px;
+  background: white;
+  align-self: center;
+}
+
+.hero_right h2 {
+  color: #d39f53;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.hero_right p {
+  color: whitesmoke;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.hero_left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

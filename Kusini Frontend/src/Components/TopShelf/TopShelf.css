@@ -1,0 +1,27 @@
+.top_shelf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 100px;
+}
+
+.top_shelf h1 {
+  color: black;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.top_shelf hr {
+  width: 200px;
+  height: 12px;
+  border-radius: 12px;
+  background: #252525;
+}
+
+.topshelfdrinks {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 50px;
+  gap: 30px;
+}

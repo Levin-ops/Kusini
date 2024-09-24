@@ -8,13 +8,12 @@
 .nav_logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
 }
 
 .nav_logo img {
-  height: 50%;
+  height: 75%;
   max-width: 100%;
-  width: 152px;
   object-fit: contain;
   border-radius: 12px;
 }
