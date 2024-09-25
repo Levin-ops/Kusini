@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ShopContext } from "../Context/ShopContext";
+import { useParams } from "react-router-dom";
+import Crumbs from "../Components/Crumbs/Crumbs";
+import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
+import RelatedProducts from "../Components/RelatedProducts/RelatedProducts";
 
 function Product() {
-  return <></>;
+  const { all_product } = useContext(ShopContext);
+  const { productId } = useParams();
+  const product = all_product.find((e) => e.id === Number(productId));
+  return (
+    <div>
+      <Crumbs product={product} />
+      <ProductDisplay product={product} />
+      <RelatedProducts product={product} />
+    </div>
+  );
 }
 
 export default Product;
