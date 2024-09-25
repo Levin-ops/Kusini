@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Navbar.css";
 import logo from "../Assets/Images/Kusini_logo.jpeg";
 import { BsCart3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { ShopContext } from "../../Context/ShopContext";
 
 function Navbar() {
   const [menu, setMenu] = useState("shop");
+  const { getTotalCartItems } = useContext(ShopContext);
 
   return (
     <div className="navbar">
@@ -125,7 +127,7 @@ function Navbar() {
           <BsCart3 className="icon" />
         </Link>
 
-        <div className="nav_cart_count">0</div>
+        <div className="nav_cart_count">{getTotalCartItems()}</div>
       </div>
     </div>
   );

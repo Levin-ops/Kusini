@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./ProductDisplay.css";
 import star_bright from "../Assets/star_icon.png";
 import star_dull from "../Assets/star_dull_icon.png";
 import all_product from "../Assets/all_product";
+import { ShopContext } from "../../Context/ShopContext";
 
 function ProductDisplay(props) {
   const { product } = props;
+  const { addToCart } = useContext(ShopContext);
 
   const [selectedDrink, setSelectedDrink] = useState([]);
 
@@ -48,7 +50,13 @@ function ProductDisplay(props) {
             ))}
           </div>
         </div>
-        <button>Add To Cart</button>
+        <button
+          onClick={() => {
+            addToCart(product.id);
+          }}
+        >
+          Add To Cart
+        </button>
         <p className="product_display_right_category">
           Category: <span>{product.category}</span>
         </p>
