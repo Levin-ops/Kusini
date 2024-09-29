@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Items(props) {
   return (
-    <div className="item">
+    <div className="items">
       <Link
         to={`/product/${props.id}`}
         style={{ textDecoration: "none", color: "black" }}

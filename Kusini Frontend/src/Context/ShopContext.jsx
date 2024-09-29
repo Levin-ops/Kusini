@@ -1,7 +1,8 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import all_product from "../Components/Assets/all_product";
 
 export const ShopContext = createContext(null);
+
 const getDefaultCart = () => {
   let cart = {};
   for (let index = 0; index < all_product.length + 1; index++) {
@@ -9,16 +10,27 @@ const getDefaultCart = () => {
   }
   return cart;
 };
-const ShopContextProvider = (props) => {
-  const [cartItems, setCartItems] = useState(getDefaultCart());
 
-  function addToCart(itemId) {
+const ShopContextProvider = (props) => {
+  const [cartItems, setCartItems] = useState(() => {
+    const savedCart = localStorage.getItem("cartItems");
+    return savedCart ? JSON.parse(savedCart) : getDefaultCart();
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-  }
-  function removeFromCart(itemId) {
+
+    console.log(cartItems);
+  };
+  const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-  }
-  function getTotalCartAmount() {
+  };
+
+  const getTotalCartAmount = () => {
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
@@ -29,8 +41,9 @@ const ShopContextProvider = (props) => {
       }
     }
     return totalAmount;
-  }
-  function getTotalCartItems() {
+  };
+
+  const getTotalCartItems = () => {
     let totalItems = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
@@ -38,17 +51,19 @@ const ShopContextProvider = (props) => {
       }
     }
     return totalItems;
-  }
-
+  };
+  const resetCart = () => {
+    setCartItems(getDefaultCart());
+  };
   const contextValue = {
+    getTotalCartItems,
+    getTotalCartAmount,
     all_product,
     cartItems,
     addToCart,
     removeFromCart,
-    getTotalCartAmount,
-    getTotalCartItems,
+    resetCart,
   };
-
   return (
     <ShopContext.Provider value={contextValue}>
       {props.children}

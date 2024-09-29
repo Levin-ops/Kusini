@@ -9,7 +9,7 @@ function ProductDisplay(props) {
   const { product } = props;
   const { addToCart } = useContext(ShopContext);
 
-  const [selectedDrink, setSelectedDrink] = useState([]);
+  const [softDrink, setSoftDrink] = useState([]);
 
   const softDrinks = all_product
     .filter((item) => item.category === "soft_drink")
@@ -18,12 +18,6 @@ function ProductDisplay(props) {
   return (
     <div className="product_display">
       <div className="product_display_left">
-        <div className="product_display_image_list">
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-        </div>
         <div className="product_display_image">
           <img src={product.image} className="product_image" alt="" />
         </div>

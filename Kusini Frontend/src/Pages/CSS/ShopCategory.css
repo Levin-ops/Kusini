@@ -1,37 +1,102 @@
-.shop_category_index_sort {
+/* ShopCategory.css */
+
+.shop_category {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.shopcategory_indexSort {
   display: flex;
-  margin: 0px 170px;
-  align-items: center;
   justify-content: space-between;
-}
-
-.shop_category_sort {
-  padding: 10px 20px;
-  border-radius: 40px;
-  border: 1px solid #888;
-}
-
-.shop_category_index_sort p span {
-  font-weight: 600;
-}
-
-.shop_category_products {
-  margin: 20px 170px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  row-gap: 80px;
-}
-
-.shop_category_load_more {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  margin: 150px auto;
-  width: 232px;
-  height: 68px;
-  border-radius: 76px;
-  background: wheat;
-  color: black;
-  font-size: 18px;
-  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.shopcategory_search {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.shopcategory_search input[type="text"] {
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.shopcategory_search input:focus {
+  border-color: #b07506;
+  outline: none;
+}
+
+.shopcategory_sort {
+  display: flex;
+  align-items: center;
+}
+
+.shopcategory_sort select,
+.shopcategory_sort button {
+  padding: 10px 15px;
+  margin-left: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.shopcategory_sort select:focus,
+.shopcategory_sort button:hover {
+  background-color: #b07506;
+  border-color: #b07506;
+  color: white;
+}
+
+.shopcategory_products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.shopcategory_loadmore {
+  margin-top: 20px;
+  padding: 15px;
+  text-align: center;
+  background-color: #b07506;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.shopcategory_loadmore:hover {
+  background-color: #b07506;
+}
+
+@media (min-width: 768px) {
+  .shopcategory_products {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .shopcategory_loadmore {
+    margin-top: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .shopcategory_products {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .shopcategory_loadmore {
+    margin-top: 60px;
+  }
 }
