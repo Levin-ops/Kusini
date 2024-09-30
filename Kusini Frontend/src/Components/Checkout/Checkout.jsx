@@ -96,6 +96,7 @@ function Checkout() {
           <p>Sub-Total: Ksh.{getTotalCartAmount()}</p>
 
           {/* Shipping Fee selection */}
+          <hr />
           <div className="checkout_shipping">
             <h4>Choose Delivery Location</h4>
             <label>
@@ -106,7 +107,7 @@ function Checkout() {
                 onChange={handleShippingChange}
                 defaultChecked
               />{" "}
-              Within Kilifi Township (Ksh. 100)
+              Within Kilifi Town (Ksh. 100)
             </label>
             <br />
             <label>
@@ -116,11 +117,10 @@ function Checkout() {
                 value="200"
                 onChange={handleShippingChange}
               />{" "}
-              Outside Kilifi Township (Ksh. 200)
+              Outside Kilifi Town (Ksh. 200)
             </label>
           </div>
-
-          <p>Shipping Fee: Ksh.{shippingFee}</p>
+          <hr />
           <h3>Total: Ksh.{getTotalCartAmount() + shippingFee}</h3>
         </div>
       </div>

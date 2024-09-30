@@ -55,7 +55,7 @@ function ListProducts() {
                   alt=""
                 />
                 <p>{product.name}</p>
-                <p>KSh{product.price}</p>
+                <p>KSh.{product.price}</p>
                 <p>{product.category}</p>
                 <p>{product.status}</p>
                 <img
