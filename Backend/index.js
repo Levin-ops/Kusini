@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const { type } = require("os");
 const { error } = require("console");
 
@@ -174,7 +175,7 @@ const Admin = mongoose.model("Admin", {
   },
 });
 
-//User Signup
+//Admin Signup
 app.post("/signup", async (req, res) => {
   let check = await Admin.findOne({ phone: req.body.phone });
   if (check) {
@@ -184,10 +185,13 @@ app.post("/signup", async (req, res) => {
     });
   }
 
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
   const admin = new Admin({
     name: req.body.name,
     phone: req.body.phone,
-    password: req.body.password,
+    password: hashedPassword, // Store the hashed password
   });
 
   await admin.save();
@@ -201,11 +205,11 @@ app.post("/signup", async (req, res) => {
   res.json({ success: true, token });
 });
 
-//User login
+//Admin login
 app.post("/login", async (req, res) => {
   let admin = await Admin.findOne({ phone: req.body.phone });
   if (admin) {
-    const passCompare = req.body.password === admin.password;
+    const passCompare = await bcrypt.compare(req.body.password, admin.password); // Compare hashed password
     if (passCompare) {
       const data = {
         admin: {
