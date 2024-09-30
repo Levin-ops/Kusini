@@ -98,7 +98,7 @@ function Checkout() {
           {/* Shipping Fee selection */}
           <hr />
           <div className="checkout_shipping">
-            <h4>Choose Delivery Location</h4>
+            <h4>Delivery Locations</h4>
             <label>
               <input
                 type="radio"
@@ -106,7 +106,7 @@ function Checkout() {
                 value="100"
                 onChange={handleShippingChange}
                 defaultChecked
-              />{" "}
+              />
               Within Kilifi Town (Ksh. 100)
             </label>
             <br />
@@ -116,7 +116,7 @@ function Checkout() {
                 name="shipping"
                 value="200"
                 onChange={handleShippingChange}
-              />{" "}
+              />
               Outside Kilifi Town (Ksh. 200)
             </label>
           </div>
