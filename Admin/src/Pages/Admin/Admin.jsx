@@ -4,6 +4,7 @@ import Sidebar from "../../Components/Sidebar/Sidebar";
 import { Routes, Route } from "react-router-dom";
 import AddProducts from "../../Components/AddProducts/AddProducts";
 import ListProducts from "../../Components/ListProducts/ListProducts";
+import Orders from "../../Components/Orders/Orders";
 
 function Admin() {
   return (
@@ -12,6 +13,7 @@ function Admin() {
       <Routes>
         <Route path="addproducts" element={<AddProducts />} />
         <Route path="listproducts" element={<ListProducts />} />
+        <Route path="orders" element={<Orders />} />
       </Routes>
     </div>
   );

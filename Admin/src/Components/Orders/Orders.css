@@ -1,0 +1,55 @@
+.orders_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 740px;
+  padding: 10px 50px;
+  margin: 30px;
+  border: 6px;
+  background: white;
+}
+
+.orders_format_main {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr; /* Five columns for Order ID, Customer Name, Total Amount, Status, Remove */
+  gap: 10px;
+  width: 100%;
+  padding: 20px 0px;
+  color: #454545;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.orders_format {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr; /* Same structure as the main format */
+  align-items: center;
+  font-weight: 500;
+}
+
+.orders_remove_icon {
+  cursor: pointer;
+  margin: auto;
+}
+
+.orders_all_items {
+  overflow-y: auto;
+}
+
+/* Responsive styles */
+@media (max-width: 800px) {
+  .orders_container {
+    box-sizing: border-box;
+    width: 90%;
+    height: 100%;
+    padding: 10px 30px;
+    margin: 20px auto;
+  }
+
+  .orders_format_main {
+    padding: 15px 0px;
+    color: #454545;
+    font-size: 12px;
+  }
+}

@@ -3,6 +3,7 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import addProduct from "../../Assets/addproduct.png";
 import listProduct from "../../Assets/listProduct.png";
+import orderPic from "../../Assets/order.png";
 
 function Sidebar() {
   return (
@@ -23,6 +24,15 @@ function Sidebar() {
         <div className="sidebar_item">
           <img src={listProduct} alt="" />
           <p>Products List</p>
+        </div>
+      </Link>
+      <Link
+        to="orders" // relative path within /admin
+        style={{ textDecoration: "none", color: "black" }}
+      >
+        <div className="sidebar_item">
+          <img src={orderPic} alt="" />
+          <p>Orders List</p>
         </div>
       </Link>
     </div>
