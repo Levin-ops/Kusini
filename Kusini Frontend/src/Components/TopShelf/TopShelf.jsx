@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./TopShelf.css";
 import Items from "../Items/Items";
 import all_product from "../Assets/all_product";
 
 function TopShelf() {
-  const topShelfDrinks = all_product.filter(
-    (item) => item.level === "Top Shelf"
-  );
+  const [topShelfDrinks, setTopShelfDrinks] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/topshelf")
+      .then((response) => response.json())
+      .then((data) => setTopShelfDrinks(data));
+  }, []);
+
   return (
     <div className="top_shelf">
       <h1>TOP SHELF</h1>

@@ -10,7 +10,7 @@ function AddProducts() {
     price: "",
     category: "",
     description: "",
-    level: "",
+    level: "Standard",
   });
 
   const imageHandler = (e) => {

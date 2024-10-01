@@ -143,7 +143,7 @@ app.get("/allproducts", async (req, res) => {
 //Endpoint for Top-Shelf drinks
 app.get("/topshelf", async (req, res) => {
   let products = await Product.find({ level: "Top Shelf" });
-  let topShelf = products.slice(1).slice(-8);
+  let topShelf = products.slice(1).slice(-12);
   res.send(products);
 });
 
@@ -225,6 +225,8 @@ app.post("/login", async (req, res) => {
     res.json({ success: false, error: "Wrong Phone Number" });
   }
 });
+
+// Order Schema
 
 app.listen(port, (error) => {
   if (!error) {
