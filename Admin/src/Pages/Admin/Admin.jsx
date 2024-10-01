@@ -10,8 +10,8 @@ function Admin() {
     <div className="admin">
       <Sidebar />
       <Routes>
-        <Route path="/addproducts" element={<AddProducts />} />
-        <Route path="/listproducts" element={<ListProducts />} />
+        <Route path="addproducts" element={<AddProducts />} />
+        <Route path="listproducts" element={<ListProducts />} />
       </Routes>
     </div>
   );

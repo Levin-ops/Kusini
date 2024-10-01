@@ -191,13 +191,13 @@ app.post("/signup", async (req, res) => {
   const admin = new Admin({
     name: req.body.name,
     phone: req.body.phone,
-    password: hashedPassword, // Store the hashed password
+    password: hashedPassword,
   });
 
   await admin.save();
 
   const data = {
-    user: {
+    admin: {
       id: admin.id,
     },
   };
@@ -222,7 +222,7 @@ app.post("/login", async (req, res) => {
       res.json({ success: false, error: "Wrong Password" });
     }
   } else {
-    res.json({ success: false, errors: "Wrong Phone Number" });
+    res.json({ success: false, error: "Wrong Phone Number" });
   }
 });
 

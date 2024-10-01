@@ -86,7 +86,7 @@ function CartItems() {
             {/* Total calculation */}
             <div className="cart_items_total_items">
               <h3>Total</h3>
-              <h3>Ksh.{getTotalCartAmount() + deliveryFee}</h3>
+              <h3>Ksh.{getTotalCartAmount()}</h3>
             </div>
           </div>
 

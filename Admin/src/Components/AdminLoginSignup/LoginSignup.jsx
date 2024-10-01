@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CSS/LoginSignup.css";
+import "./LoginSignup.css";
 
 function LoginSignup() {
   const [state, setState] = useState("Login");
@@ -26,7 +26,7 @@ function LoginSignup() {
     if (responseData.success) {
       alert("Login Successfull");
       localStorage.setItem("auth-token", responseData.token);
-      window.location.replace("/");
+      window.location.replace("/admin");
     } else {
       alert(responseData.error);
     }
@@ -62,7 +62,7 @@ function LoginSignup() {
   return (
     <div className="loginsignup">
       <div className="loginsignup_container">
-        <h1>{state}</h1>
+        <h1>Kusini Admin {state}</h1>
         <div className="loginsignup_fields">
           {state === "Sign Up" ? (
             <input

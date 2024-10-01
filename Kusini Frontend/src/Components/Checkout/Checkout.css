@@ -7,8 +7,14 @@
 }
 
 .checkout_left {
-  width: 50%;
-  padding-right: 20px;
+  width: 50%; /* Fixed width for the left checkout section */
+  padding-right: 20px; /* Padding to the right */
+  box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+.checkout_right {
+  width: 48%; /* Fixed width for the right checkout section */
+  box-sizing: border-box; /* Ensures padding is included in width */
 }
 
 .checkout_cartitems {
@@ -29,10 +35,6 @@
 .checkout_totals {
   border-top: 1px solid #ddd;
   padding-top: 10px;
-}
-
-.checkout_right {
-  width: 48%;
 }
 
 .checkout_billing input {
@@ -60,7 +62,9 @@
 
 .checkout_payment_options {
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start; /* Align items to the start */
+  gap: 24px;
 }
 
 .checkout_payment_options label {
@@ -71,4 +75,91 @@
 
 .checkout_payment_options input[type="radio"] {
   margin-right: 10px;
+}
+
+/* Tablet Screens (up to 1024px) */
+@media (max-width: 1024px) {
+  .checkout {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .checkout_left,
+  .checkout_right {
+    width: 100%; /* Full width on smaller screens */
+    padding: 0; /* Remove padding on smaller screens */
+  }
+
+  .checkout_left {
+    margin-bottom: 20px; /* Margin below the left section */
+  }
+
+  .checkout_product_icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .checkout_place_order {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
+/* Small Screens (up to 800px) */
+@media (max-width: 800px) {
+  .checkout {
+    padding: 10px;
+    margin: 10px auto;
+  }
+
+  .checkout_left,
+  .checkout_right {
+    width: 100%; /* Full width on smaller screens */
+  }
+
+  .checkout_product_icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .checkout_totals {
+    padding-top: 8px;
+  }
+
+  .checkout_place_order {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .checkout_billing input {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+/* Extra Small Screens (up to 500px) */
+@media (max-width: 500px) {
+  .checkout {
+    padding: 5px;
+    margin: 5px auto;
+  }
+
+  .checkout_product_icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .checkout_place_order {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .checkout_billing input {
+    padding: 6px;
+    font-size: 13px;
+  }
+
+  .checkout_payment_options label {
+    font-size: 12px;
+  }
 }

@@ -12,7 +12,7 @@
 
 .list_products_format_main {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr 1fr; /* Added one more column for the toggle button */
   gap: 10px;
   width: 100%;
   padding: 20px 0px;
@@ -37,6 +37,25 @@
 
 .list_products_all_products {
   overflow-y: auto;
+}
+
+/* Button styles for availability */
+.list_products_toggle_button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.list_products_toggle_button.available {
+  background-color: green; /* Green for available */
+}
+
+.list_products_toggle_button.unavailable {
+  background-color: red; /* Red for unavailable */
 }
 
 @media (max-width: 800px) {

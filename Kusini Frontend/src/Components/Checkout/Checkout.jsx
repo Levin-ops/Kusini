@@ -158,7 +158,7 @@ function Checkout() {
                 onChange={handlePaymentChange}
                 required
               />{" "}
-              MPESA on Delivery
+              M-pesa on Delivery
             </label>
             <label>
               <input

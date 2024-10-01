@@ -8,7 +8,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <Link
-        to={"/addproducts"}
+        to="addproducts" // relative path within /admin
         style={{ textDecoration: "none", color: "black" }}
       >
         <div className="sidebar_item">
@@ -17,7 +17,7 @@ function Sidebar() {
         </div>
       </Link>
       <Link
-        to={"/listproducts"}
+        to="listproducts" // relative path within /admin
         style={{ textDecoration: "none", color: "black" }}
       >
         <div className="sidebar_item">
