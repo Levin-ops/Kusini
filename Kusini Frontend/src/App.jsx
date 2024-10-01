@@ -7,7 +7,6 @@ import ShopAllProducts from "./Pages/ShopAllProducts";
 import ShopCategory from "./Pages/ShopCategory";
 import Product from "./Pages/Product";
 import Cart from "./Pages/Cart";
-import LoginSignup from "./Pages/LoginSignup";
 import Footer from "./Components/Footer/Footer";
 import Checkout from "./Components/Checkout/Checkout";
 
@@ -38,7 +37,6 @@ function App() {
             <Route path=":productId" element={<Product />} />
           </Route>
           <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<LoginSignup />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer />

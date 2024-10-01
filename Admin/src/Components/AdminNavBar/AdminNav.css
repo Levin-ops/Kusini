@@ -8,6 +8,15 @@
   background: white;
 }
 
+.admin_navbar button {
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  padding: 0 20px;
+  background: black;
+  color: white;
+}
+
 .admin_nav_logo {
   width: 200px;
 }

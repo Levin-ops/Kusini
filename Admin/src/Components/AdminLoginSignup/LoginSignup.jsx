@@ -10,7 +10,6 @@ function LoginSignup() {
   });
 
   const login = async () => {
-    // console.log("login", formData);
     let responseData;
     await fetch("http://localhost:4000/login", {
       method: "POST",
@@ -33,7 +32,6 @@ function LoginSignup() {
   };
 
   const signup = async () => {
-    // console.log("signup", formData);
     let responseData;
     await fetch("http://localhost:4000/signup", {
       method: "POST",

@@ -26,14 +26,12 @@
   font-weight: 600;
 }
 
-/* Hamburger Icon */
 .hamburger {
   display: none;
   font-size: 24px;
   cursor: pointer;
 }
 
-/* Nav Menu */
 .nav_menu {
   display: flex;
   align-items: center;

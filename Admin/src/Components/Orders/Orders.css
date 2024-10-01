@@ -6,13 +6,13 @@
   height: 740px;
   padding: 10px 50px;
   margin: 30px;
-  border: 6px;
   background: white;
+  font-size: 14px;
 }
 
 .orders_format_main {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr 1fr 1fr; /* Five columns for Order ID, Customer Name, Total Amount, Status, Remove */
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
   gap: 10px;
   width: 100%;
   padding: 20px 0px;
@@ -23,7 +23,7 @@
 
 .orders_format {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr 1fr 1fr; /* Same structure as the main format */
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
   font-weight: 500;
 }
@@ -31,25 +31,33 @@
 .orders_remove_icon {
   cursor: pointer;
   margin: auto;
+  width: 20px;
+  height: 20px;
 }
 
 .orders_all_items {
   overflow-y: auto;
+  width: 100%;
 }
 
-/* Responsive styles */
 @media (max-width: 800px) {
   .orders_container {
     box-sizing: border-box;
     width: 90%;
-    height: 100%;
+    height: auto;
     padding: 10px 30px;
     margin: 20px auto;
+    font-size: 12px;
   }
 
   .orders_format_main {
     padding: 15px 0px;
     color: #454545;
     font-size: 12px;
+    grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr;
+  }
+
+  .orders_format {
+    grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr;
   }
 }

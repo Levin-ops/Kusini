@@ -13,7 +13,6 @@ function App() {
         <>
           <AdminNav />
           <Routes>
-            {/* The wildcard * allows Admin to handle sub-routes like addproducts and listproducts */}
             <Route path="/admin/*" element={<Admin />} />
           </Routes>
         </>

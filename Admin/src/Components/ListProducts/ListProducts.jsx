@@ -36,7 +36,7 @@ function ListProducts() {
       },
       body: JSON.stringify({ id }),
     });
-    await fetchInfo(); // Refresh the product list
+    await fetchInfo();
   };
 
   return (

@@ -8,13 +8,11 @@ import Items from "../Components/Items/Items";
 function ShopCategory(props) {
   const { all_product } = useContext(ShopContext);
 
-  // hooks for searching, sorting and pagination
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
-  // const [visibleCount, setVisibleCount] = useState(72);
+
   const [sortCriteria, setSortCriteria] = useState("name");
 
-  // Filtering and Sorting
   const filteredAndSortedProducts = all_product
     .filter(
       (item) =>
@@ -31,15 +29,12 @@ function ShopCategory(props) {
       }
     });
 
-  //Search Handler
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
-  // Sort Criteria Handler
   const handleSortCriteriaChange = () => {
     setSortCriteria(event.target.value);
   };
-  //Sort Handler
   const handleSortChange = () => {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };

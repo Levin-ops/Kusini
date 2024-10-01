@@ -6,8 +6,6 @@ import facebook_icon from "../Assets/facebook.png";
 import whatsapp_icon from "../Assets/whatsapp_icon.png";
 import footer_logo from "../Assets/Images/Kusini_logo.jpeg";
 
-// const callTo = () => {};
-
 function Footer() {
   return (
     <div className="footer">

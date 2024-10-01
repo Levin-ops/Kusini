@@ -10,9 +10,8 @@ function Product() {
   const { productId } = useParams();
   const product = all_product.find((e) => e.id === Number(productId));
 
-  // Check if product is not found
   if (!product) {
-    return <div>Loading product...</div>; // Or a different loading/error UI
+    return <div>Loading product...</div>;
   }
 
   return (

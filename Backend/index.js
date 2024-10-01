@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(cors());
 
 //Database connection with mongoBD
-
 mongoose.connect(
   "mongodb+srv://levinmwanganyi:Shanazia2021!@cluster0.uivn7.mongodb.net/kusini"
 );
@@ -227,6 +226,145 @@ app.post("/login", async (req, res) => {
 });
 
 // Order Schema
+const OrderSchema = new mongoose.Schema({
+  customer: {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+  },
+  items: [
+    {
+      productId: {
+        type: Number,
+        required: true,
+      },
+      name: {
+        type: String,
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+      total: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],
+  paymentMethod: {
+    type: String,
+    enum: ["cod", "mpesa", "paynow"],
+    required: true,
+  },
+  shippingFee: {
+    type: Number,
+    required: true,
+  },
+  totalAmount: {
+    type: Number,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ["Pending", "Delivered", "Cancelled"],
+    default: "Pending",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+const Order = mongoose.model("Order", OrderSchema);
+
+// Order Endpoints
+app.get("/allorders", async (req, res) => {
+  try {
+    const orders = await Order.find({});
+    res.json(orders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+app.post("/createOrder", async (req, res) => {
+  const { customer, items, paymentMethod, shippingFee, totalAmount } = req.body;
+
+  if (!customer || !items || !paymentMethod || !totalAmount) {
+    return res.status(400).json({ message: "All fields are required." });
+  }
+
+  const newOrder = new Order({
+    customer,
+    items,
+    paymentMethod,
+    shippingFee,
+    totalAmount,
+  });
+
+  try {
+    const savedOrder = await newOrder.save();
+    res.status(201).json({
+      success: true,
+      order: savedOrder,
+    });
+  } catch (error) {
+    console.error("Error creating order:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+app.post("/updateOrderStatus", async (req, res) => {
+  const { orderId, newStatus } = req.body;
+
+  try {
+    const updatedOrder = await Order.findByIdAndUpdate(
+      orderId,
+      { status: newStatus },
+      { new: true }
+    );
+
+    if (!updatedOrder) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    res.json({
+      success: true,
+      order: updatedOrder,
+    });
+  } catch (error) {
+    console.error("Error updating order status:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// Deleting orders
+app.post("/deleteorder", async (req, res) => {
+  const { orderId } = req.body;
+
+  try {
+    await Order.findByIdAndDelete(orderId);
+    res.json({ success: true, message: "Order deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting order:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 app.listen(port, (error) => {
   if (!error) {

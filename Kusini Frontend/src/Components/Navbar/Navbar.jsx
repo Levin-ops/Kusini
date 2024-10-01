@@ -24,7 +24,6 @@ function Navbar() {
   return (
     <div className="navbar">
       <div className="nav_logo">
-        {/* <p>Kusini Liquor</p> */}
         <img onClick={handleLogoClick} src={shop_logo} alt="" />{" "}
       </div>
       <ul className={`nav_menu ${isMenuOpen ? "open" : ""}`}>
@@ -146,10 +145,10 @@ function Navbar() {
       </ul>
       <div className="nav_login_cart">
         <Link to="/cart" style={{ textDecoration: "none", color: "black" }}>
-          {/* <img src={cart_icon} alt="" /> */} <BsCart className="icon" />
+          <BsCart className="icon" />
         </Link>
         <div className="nav_cart_count">{getTotalCartItems()}</div>
-        {/* Hamburger Icon */}
+
         <div className="hamburger" onClick={toggleMenu}>
           <BsJustify />
         </div>

@@ -69,7 +69,6 @@
   color: black;
 }
 
-/* For tablets and smaller devices */
 @media (max-width: 768px) {
   .cart_items {
     margin: 20px 20px;

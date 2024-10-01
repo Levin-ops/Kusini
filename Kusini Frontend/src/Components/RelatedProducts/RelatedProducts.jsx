@@ -4,9 +4,8 @@ import all_product from "../Assets/all_product";
 import Items from "../Items/Items";
 
 function RelatedProducts({ product }) {
-  // Handle case when product is not defined
   if (!product) {
-    return <div>No related products available.</div>; // Fallback UI
+    return <div>No related products available.</div>;
   }
 
   const relatedProduct = all_product
@@ -24,7 +23,7 @@ function RelatedProducts({ product }) {
         {relatedProduct.length > 0 ? (
           relatedProduct.map((item) => (
             <Items
-              key={item.id} // Use item.id for better key uniqueness
+              key={item.id}
               id={item.id}
               name={item.name}
               image={item.image}

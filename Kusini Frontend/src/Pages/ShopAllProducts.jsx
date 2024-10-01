@@ -6,13 +6,11 @@ import Items from "../Components/Items/Items";
 function ShopAllProducts() {
   const { all_product } = useContext(ShopContext);
 
-  // hooks for searching, sorting, and pagination
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
-  // const [visibleCount, setVisibleCount] = useState(600);
+
   const [sortCriteria, setSortCriteria] = useState("name");
 
-  // Filtering and Sorting
   const filteredAndSortedProducts = all_product
     .filter((item) =>
       item.name.toLowerCase().includes(searchQuery.toLocaleLowerCase())
@@ -27,25 +25,17 @@ function ShopAllProducts() {
       }
     });
 
-  //Search Handler
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
 
-  // Sort Criteria Handler
   const handleSortCriteriaChange = (event) => {
     setSortCriteria(event.target.value);
   };
 
-  //Sort Handler
   const handleSortChange = () => {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
-
-  // Load More Handler
-  // const handleLoadMore = () => {
-  //   setVisibleCount((prevCount) => prevCount + 100);
-  // };
 
   return (
     <div className="shop_all_products">
@@ -79,11 +69,6 @@ function ShopAllProducts() {
           />
         ))}
       </div>
-      {/* {visibleCount < filteredAndSortedProducts.length && (
-        <div className="shopallproducts_loadmore" onClick={handleLoadMore}>
-          Load More Products
-        </div>
-      )} */}
     </div>
   );
 }

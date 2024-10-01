@@ -28,14 +28,41 @@ function Checkout() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const orderData = {
+      customer: {
+        firstName: e.target[0].value,
+        lastName: e.target[1].value,
+        phoneNumber: phoneNumber,
+      },
+      items: all_product
+        .map((product) => {
+          if (cartItems[product.id] > 0) {
+            return {
+              productId: product.id,
+              name: product.name,
+              quantity: cartItems[product.id],
+              price: product.price,
+              total: product.price * cartItems[product.id],
+            };
+          }
+          return null;
+        })
+        .filter(Boolean), // Filter out null values
+      paymentMethod: paymentMethod,
+      shippingFee: shippingFee,
+      totalAmount: getTotalCartAmount() + shippingFee,
+      status: "Pending", // Set initial status to Pending
+    };
+
+    // If payment method is Pay Now, initiate STK Push
     if (paymentMethod === "paynow") {
-      initiateSTKPush(phoneNumber, getTotalCartAmount() + shippingFee);
+      initiateSTKPush(phoneNumber, orderData.totalAmount, orderData);
     } else {
-      completeOrder();
+      completeOrder(orderData);
     }
   };
 
-  const initiateSTKPush = async (phone, amount) => {
+  const initiateSTKPush = async (phone, amount, orderData) => {
     try {
       const response = await fetch("http://localhost:5555/api/stkpush", {
         method: "POST",
@@ -52,7 +79,7 @@ function Checkout() {
         const data = await response.json();
         console.log(`STK Push initiated: ${data}`);
         alert("STK Push sent! Please complete payment on your phone.");
-        completeOrder();
+        completeOrder(orderData);
       } else {
         console.error("Error initiating STK Push:", response.statusText);
         alert("Payment initiation failed. Please try again.");
@@ -63,11 +90,54 @@ function Checkout() {
     }
   };
 
-  const completeOrder = () => {
-    console.log("Order completed! You will receive your delivery soon.");
-    alert("Order placed successfully! You will receive your delivery soon.");
-    resetCart();
-    navigate("/");
+  const completeOrder = async () => {
+    const orderData = {
+      customer: {
+        firstName: document.querySelector('input[placeholder="First name"]')
+          .value,
+        lastName: document.querySelector('input[placeholder="Last name"]')
+          .value,
+        phoneNumber: phoneNumber,
+      },
+      items: all_product
+        .filter((e) => cartItems[e.id] > 0)
+        .map((e) => ({
+          productId: e.id,
+          name: e.name,
+          quantity: cartItems[e.id],
+          price: e.price,
+          total: e.price * cartItems[e.id],
+        })),
+      paymentMethod: paymentMethod,
+      shippingFee: shippingFee,
+      totalAmount: getTotalCartAmount() + shippingFee,
+    };
+
+    try {
+      const response = await fetch("http://localhost:4000/createOrder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Order created:", data);
+        alert(
+          "Order placed successfully! You will receive your delivery soon."
+        );
+        resetCart();
+        navigate("/");
+      } else {
+        console.error("Error placing order:", response.statusText);
+        alert("Failed to place order. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error placing order:", error);
+      alert("Failed to place order. Please try again.");
+    }
   };
 
   return (

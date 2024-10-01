@@ -63,7 +63,7 @@
 .checkout_payment_options {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start; /* Align items to the start */
+  justify-content: flex-start;
   gap: 24px;
 }
 
@@ -77,7 +77,6 @@
   margin-right: 10px;
 }
 
-/* Tablet Screens (up to 1024px) */
 @media (max-width: 1024px) {
   .checkout {
     flex-direction: column;
@@ -86,12 +85,12 @@
 
   .checkout_left,
   .checkout_right {
-    width: 100%; /* Full width on smaller screens */
-    padding: 0; /* Remove padding on smaller screens */
+    width: 100%;
+    padding: 0;
   }
 
   .checkout_left {
-    margin-bottom: 20px; /* Margin below the left section */
+    margin-bottom: 20px;
   }
 
   .checkout_product_icon {
@@ -105,7 +104,6 @@
   }
 }
 
-/* Small Screens (up to 800px) */
 @media (max-width: 800px) {
   .checkout {
     padding: 10px;
@@ -114,7 +112,7 @@
 
   .checkout_left,
   .checkout_right {
-    width: 100%; /* Full width on smaller screens */
+    width: 100%;
   }
 
   .checkout_product_icon {
@@ -137,7 +135,6 @@
   }
 }
 
-/* Extra Small Screens (up to 500px) */
 @media (max-width: 500px) {
   .checkout {
     padding: 5px;

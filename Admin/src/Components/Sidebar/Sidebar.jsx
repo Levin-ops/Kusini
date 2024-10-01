@@ -8,17 +8,14 @@ import orderPic from "../../Assets/order.png";
 function Sidebar() {
   return (
     <div className="sidebar">
-      <Link
-        to="addproducts" // relative path within /admin
-        style={{ textDecoration: "none", color: "black" }}
-      >
+      <Link to="addproducts" style={{ textDecoration: "none", color: "black" }}>
         <div className="sidebar_item">
           <img src={addProduct} alt="" />
           <p>Add Product</p>
         </div>
       </Link>
       <Link
-        to="listproducts" // relative path within /admin
+        to="listproducts"
         style={{ textDecoration: "none", color: "black" }}
       >
         <div className="sidebar_item">
@@ -26,10 +23,7 @@ function Sidebar() {
           <p>Products List</p>
         </div>
       </Link>
-      <Link
-        to="orders" // relative path within /admin
-        style={{ textDecoration: "none", color: "black" }}
-      >
+      <Link to="orders" style={{ textDecoration: "none", color: "black" }}>
         <div className="sidebar_item">
           <img src={orderPic} alt="" />
           <p>Orders List</p>
