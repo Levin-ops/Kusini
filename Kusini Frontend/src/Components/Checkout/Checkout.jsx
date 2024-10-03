@@ -64,7 +64,7 @@ function Checkout() {
 
   const initiateSTKPush = async (phone, amount, orderData) => {
     try {
-      const response = await fetch("http://localhost:5555/api/stkpush", {
+      const response = await fetch("http://localhost:4000/stk", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

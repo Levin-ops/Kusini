@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./TopShelf.css";
 import Items from "../Items/Items";
-import all_product from "../Assets/all_product";
+// import all_product from "../Assets/all_product";
 
 function TopShelf() {
   const [topShelfDrinks, setTopShelfDrinks] = useState([]);

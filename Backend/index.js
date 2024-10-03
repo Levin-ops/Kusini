@@ -1,4 +1,3 @@
-const port = 4000;
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -9,6 +8,11 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const { type } = require("os");
 const { error } = require("console");
+const port = 4000;
+const axios = require("axios");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 app.use(express.json());
 app.use(cors());
@@ -366,6 +370,96 @@ app.post("/deleteorder", async (req, res) => {
   }
 });
 
+// MPESA INTEGRATION
+// Generating Token
+const getMpesaToken = async (req, res, next) => {
+  try {
+    const consumerKey = process.env.MPESA_CONSUMER_KEY;
+    const consumerSecret = process.env.MPESA_CONSUMER_SECRET;
+    const url =
+      "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
+
+    const auth = Buffer.from(`${consumerKey}:${consumerSecret}`).toString(
+      "base64"
+    );
+
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Basic ${auth}`,
+      },
+    });
+
+    const token = response.data.access_token;
+    console.log("Token: ", token);
+
+    req.mpesaToken = token;
+    next();
+  } catch (error) {
+    console.error("Error fetching Mpesa token: ", error);
+    res.status(400).json({ error: "Failed to generate token" });
+  }
+};
+
+// Token route
+app.get("/token", getMpesaToken, (req, res) => {
+  res.json({ message: "Token generated successfully", token: req.mpesaToken });
+});
+
+// Generating STK Push
+app.post("/stk", getMpesaToken, async (req, res) => {
+  try {
+    const phone = req.body.phone.substring(1);
+    const amount = req.body.amount;
+    const passKey = process.env.MPESA_PASSKEY;
+    const tillNumber = process.env.MPESA_SHORTCODE;
+    const timestamp = new Date()
+      .toISOString()
+      .replace(/[-T:\.Z]/g, "")
+      .slice(0, 14);
+
+    const password = Buffer.from(tillNumber + passKey + timestamp).toString(
+      "base64"
+    );
+
+    const data = {
+      BusinessShortCode: tillNumber,
+      Password: password,
+      Timestamp: timestamp,
+      TransactionType: "CustomerBuyGoodsOnline",
+      Amount: amount,
+      PartyA: `254${phone}`,
+      PartyB: tillNumber,
+      PhoneNumber: `254${phone}`,
+      CallBackURL: "https://yourdomain.com/mpesa/callback",
+      AccountReference: `Order12345`,
+      TransactionDesc: "Payment for goods",
+    };
+
+    const response = await axios.post(
+      "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest",
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${req.mpesaToken}`,
+        },
+      }
+    );
+
+    res.json({
+      success: true,
+      message: "STK Push request sent",
+      response: response.data,
+    });
+  } catch (error) {
+    console.error(
+      "Error initiating STK Push: ",
+      error.response ? error.response.data : error
+    );
+    res.status(400).json({ error: "Failed to initiate STK Push" });
+  }
+});
+
+// Initializing API
 app.listen(port, (error) => {
   if (!error) {
     console.log(`Server running on port ${port}`);
