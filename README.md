@@ -52,9 +52,5 @@ The platform encourages responsible drinking and includes warnings about the dan
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Contact
-
-For any inquiries or support, feel free to contact us:
-
-- Email: support@kusiniliquor.co.ke
-- Website: [www.kusiniliquor.co.ke](https://www.kusiniliquor.co.ke)
+## Website
+(https://www.kusiniliquor.co.ke)
